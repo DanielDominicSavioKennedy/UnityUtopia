@@ -1,0 +1,43 @@
+{% extends "core/base_new.html" %}
+
+{% block title %}
+   Login |
+{% endblock title %}
+
+{% block content %}
+
+<div class= "m-9 flex items-center justify-center ">
+  <div class="m-3 shadow-xl"  style="background: rgba(0, 55, 161, 0.74);">
+   
+      <div class="p-10 lg:p-20 text-center">
+          <h1 class="text-xl lg:text-6xl text-white">USER LOGIN</h1>
+      </div>
+
+      <form action="." method="post" class="p-4 px-9 mx-auto">
+          {% csrf_token %}
+
+          <label for="username" class="w-full mt-2 px-4 py-2 rounded-xl">Username</label>
+          <input type="text" name="username" class="w-full mt-2 px-4 py-2 rounded-xl">
+
+          <label for="password" class="w-full mt-2 px-4 py-2 rounded-xl">Password</label>
+          <input type="password" name="password" class="w-full mt-2 px-4 py-2 rounded-xl">
+
+          {% if form.errors %}
+
+                  {% for field in form %}
+                      {% for error in field.errors %}
+                        <div class="mb-5 p-4 rounded-xl bg-ewd-300 text-white">
+                          <p>{{error|escape}}</p>
+                        </div>
+                      {% endfor %}
+                  {% endfor %}
+          {% endif %}
+          <div class="flex items-center justify-center">
+            <button class="mb-5 p-2 px-5 mt-5 rounded-xl text-white bg-green-700 hover:text-gray-200 hover:bg-teal-500">Login</button>            
+          </div>
+
+      </form>
+      
+  </div>
+</div>
+{% endblock content %}
